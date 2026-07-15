@@ -4,7 +4,7 @@
  */
 import type { VercelRequest, VercelResponse } from "@vercel/node"
 
-import { healthBody } from "../server/handleAnalyze.ts"
+import { healthBody } from "../server/handleAnalyze"
 
 export default function handler(_req: VercelRequest, res: VercelResponse) {
   return res.status(200).json(healthBody())

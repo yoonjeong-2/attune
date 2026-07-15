@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { pickMockCase, pickMockDomain } from "./mocks.ts"
+import { pickMockCase, pickMockDomain } from "./mocks"
 
 describe("pickMockDomain", () => {
   it("'기획'/'PM'은 기획, '개발'은 개발, 그 외는 fallback", () => {

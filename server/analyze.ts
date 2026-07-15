@@ -5,7 +5,7 @@
  */
 import Anthropic from "@anthropic-ai/sdk"
 
-import { ANALYSIS_SCHEMA, buildUserContent, SYSTEM_PROMPT } from "./prompt.ts"
+import { ANALYSIS_SCHEMA, buildUserContent, SYSTEM_PROMPT } from "./prompt"
 
 // 기본 모델은 최신 Opus. 비용/속도를 조절하고 싶으면 .env의 ANTHROPIC_MODEL로 교체 가능.
 const MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-4-8"
