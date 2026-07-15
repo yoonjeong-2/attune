@@ -32,6 +32,7 @@ export default function InputPage() {
     prefill?: InputDraft
     reanalysisPreset?: AnalysisResult
     reanalysisPrev?: number
+    demoCase?: { domain: MockDomain; level: FitLevel }
   } | null
   const prefill = navState?.prefill
   const [resume, setResume] = useState(() => prefill?.resume ?? emptyResumeForm())
@@ -41,7 +42,10 @@ export default function InputPage() {
   // 재분석 이전 매칭 점수 — 결과 화면의 상승폭(▲) 계산용으로 함께 넘긴다
   const [prevScore] = useState<number | null>(() => navState?.reanalysisPrev ?? null)
   // 데모로 채운 케이스 — 분석 시 그 케이스 결과를 그대로 받도록 함께 넘긴다. 수동 편집하면 해제.
-  const [demoCase, setDemoCase] = useState<{ domain: MockDomain; level: FitLevel } | null>(null)
+  // 재분석 진입 시엔 prefill과 함께 넘어온 케이스로 초기화(안 그러면 재분석이 케이스를 잃고 하이라이트가 어긋남).
+  const [demoCase, setDemoCase] = useState<{ domain: MockDomain; level: FitLevel } | null>(
+    () => navState?.demoCase ?? null
+  )
   // 버튼을 누른 뒤 "분석 중"(흐르는 그라데이션) 상태 — 잠깐 보여준 뒤 로딩 화면으로 넘어간다
   const [submitting, setSubmitting] = useState(false)
 

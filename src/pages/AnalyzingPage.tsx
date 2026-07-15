@@ -85,10 +85,13 @@ export default function AnalyzingPage() {
     if (error || stage < STAGES.length || !result) return
     const t = setTimeout(() => {
       // 결과 화면 하이라이팅을 위해 이력서(담당업무 원문)도 함께 전달
-      navigate("/result", { replace: true, state: { result, resume: draft?.resume, job: draft?.job, reanalysisPrev } })
+      navigate("/result", {
+        replace: true,
+        state: { result, resume: draft?.resume, job: draft?.job, reanalysisPrev, demoCase },
+      })
     }, 350)
     return () => clearTimeout(t)
-  }, [stage, result, error, navigate, draft, reanalysisPrev])
+  }, [stage, result, error, navigate, draft, reanalysisPrev, demoCase])
 
   if (!input) return null
 

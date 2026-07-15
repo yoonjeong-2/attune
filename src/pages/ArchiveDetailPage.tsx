@@ -62,6 +62,14 @@ export default function ArchiveDetailPage() {
     : record.saved?.resume
       ? { resume: record.saved.resume, job: record.saved.job ?? "" }
       : null
+  // 데모 카드는 demoKey("직군-적합도")에서 케이스를 뽑아 재분석에 함께 넘긴다 —
+  // 안 그러면 재분석이 텍스트로 케이스를 추정하다 어긋나 옛 단일 컬럼 디자인으로 빠진다.
+  const demoCase = demoKey
+    ? (() => {
+        const [domain, level] = demoKey.split("-") as [MockDomain, FitLevel]
+        return { domain, level }
+      })()
+    : undefined
   const reanalyzeState =
     demoKey === "기획-낮음"
       ? {
@@ -70,7 +78,7 @@ export default function ArchiveDetailPage() {
           reanalysisPrev: reanalysisDemo.before.matchRate,
         }
       : prefillDraft
-        ? { prefill: prefillDraft }
+        ? { prefill: prefillDraft, demoCase }
         : null
   const highFit = record.level === "높음"
   const cta =

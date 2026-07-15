@@ -9,7 +9,7 @@ import { ResumeHighlight } from "@/components/result/ResumeHighlight"
 import { SaveToArchive } from "@/components/result/SaveToArchive"
 import { StrengthItem } from "@/components/result/StrengthItem"
 import { WeaknessItem } from "@/components/result/WeaknessItem"
-import type { AnalysisResult } from "@/lib/analysis"
+import type { AnalysisResult, FitLevel, MockDomain } from "@/lib/analysis"
 import { emptyResumeForm, type ResumeForm } from "@/lib/resume"
 
 /**
@@ -27,8 +27,12 @@ export default function ResultPage() {
     resume?: ResumeForm
     job?: string
     reanalysisPrev?: number
+    demoCase?: { domain: MockDomain; level: FitLevel }
   } | null
   const result = state?.result
+  // 데모 케이스(직군·적합도) — 재분석 시 그대로 넘겨 같은 케이스 결과를 받게 한다.
+  // (없으면 서버가 텍스트로 케이스를 추정해 다른 결과가 나올 수 있어 하이라이트가 어긋난다)
+  const demoCase = state?.demoCase
   // 하이라이팅용 이력서 원문(담당업무) — 분석 화면에서 함께 넘어옴
   const resume = state?.resume
   // 재분석/다른 공고로 이어갈 때 입력 프리필에 쓸 공고 원문
@@ -74,7 +78,9 @@ export default function ResultPage() {
     <div className="flex flex-col items-center gap-4">
       <button
         type="button"
-        onClick={() => navigate("/", { state: { prefill: { resume: prefillResume, job: job ?? "" } } })}
+        onClick={() =>
+          navigate("/", { state: { prefill: { resume: prefillResume, job: job ?? "" }, demoCase } })
+        }
         className="btn-analyze inline-flex h-12 items-center justify-center gap-2 rounded-chip px-8 text-body font-semibold text-white transition-[filter] hover:brightness-[1.04] active:scale-[0.99] [&_svg]:size-5 [&_svg]:shrink-0"
       >
         <Sparkles />
