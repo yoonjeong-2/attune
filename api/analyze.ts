@@ -5,7 +5,7 @@
  */
 import type { VercelRequest, VercelResponse } from "@vercel/node"
 
-import { handleAnalyze } from "../server/handleAnalyze"
+import { handleAnalyze } from "../server/handleAnalyze.js"
 
 // 실제 Claude 분석은 오래 걸릴 수 있어(적응형 사고 + 대용량 출력) 타임아웃을 넉넉히.
 // 목업 모드에선 0.6초라 무관하지만, 실제 키로 전환해도 잘리지 않도록 미리 설정.

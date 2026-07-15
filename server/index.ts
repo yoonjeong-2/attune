@@ -9,8 +9,8 @@ import "dotenv/config"
 import cors from "cors"
 import express from "express"
 
-import { hasApiKey } from "./analyze"
-import { handleAnalyze, healthBody } from "./handleAnalyze"
+import { hasApiKey } from "./analyze.js"
+import { handleAnalyze, healthBody } from "./handleAnalyze.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 8787

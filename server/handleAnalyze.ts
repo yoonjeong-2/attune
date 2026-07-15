@@ -4,9 +4,9 @@
  * 로직이 두 곳에서 갈라지지 않도록 여기 한 곳에만 둔다.
  * 반환값은 { status, body } — 각 진입점이 자기 방식대로 응답으로 변환한다.
  */
-import { analyzeMatch, hasApiKey } from "./analyze"
-import { extractText, type SourceInput } from "./extract"
-import { MOCK_RESULTS, pickMockCase, pickMockDomain, type MockCase, type MockDomain } from "./mocks"
+import { analyzeMatch, hasApiKey } from "./analyze.js"
+import { extractText, type SourceInput } from "./extract.js"
+import { MOCK_RESULTS, pickMockCase, pickMockDomain, type MockCase, type MockDomain } from "./mocks.js"
 
 // 목업 모드 스위치 (UI 개발/데모용): USE_MOCK=true 면 실제 Claude API 대신 가짜 결과를 반환.
 const USE_MOCK = process.env.USE_MOCK === "true"
